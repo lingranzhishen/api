@@ -230,6 +230,7 @@ var apiClick = function (e) {
 	var apiId = $(dom).attr("data-id");
 	var url = '/admin/api/getDetail/' + apiId;
 	$.post(url, {}, function (data) {
+		data = data.data;
 		//api name
 		$("#apiName").text(data.name);
 		//requestMethod
@@ -241,7 +242,7 @@ var apiClick = function (e) {
 		//hostName
 		$("#hostName").text(data.hostName);
 
-		var description = data.data.description;
+		var description = data.description;
 		var html = md.render(description);
 		$("#apiDescription").html(html);
 	});
