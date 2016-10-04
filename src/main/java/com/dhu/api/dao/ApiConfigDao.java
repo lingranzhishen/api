@@ -12,4 +12,6 @@ public interface ApiConfigDao {
 public ApiConfig getApiConfigByParams(Map<String,Object>pMap);
 public ApiConfig getApiConfigById(Long Id);
 public List<ApiConfig> listApiConfigByParams(Map<String, Object> pMap);
+public void addApiConfig(ApiConfig apiConfig);
+public void updateApiConfig(ApiConfig apiConfig);
 }

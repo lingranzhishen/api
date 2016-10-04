@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
@@ -43,6 +44,15 @@ public class APIConfigController extends ApiBaseController {
 			@PathVariable("id") Long id) {
 		ApiJsonResult result=ok();
 		ApiConfig apiConfig = apiConfigService.getApiConfigById(id);
+		return result.put("data",apiConfig);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/save")
+	public ApiJsonResult save(HttpServletRequest request, HttpServletResponse response,
+			@RequestBody ApiConfig apiConfig) {
+		ApiJsonResult result=ok();
+		apiConfigService.addApiConfig(apiConfig);
 		return result.put("data",apiConfig);
 	}
 }

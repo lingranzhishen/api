@@ -46,7 +46,7 @@
 		</if>
 	</select>
 
-	<insert id="insertApiConfig">
+	<insert id="addApiConfig">
 		insert into t_api_config
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="name != null">
@@ -119,4 +119,41 @@
 			</if>
 		</trim>
 	</insert>
+	
+	<update id="updateApiConfig">
+    update t_api_config
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="versionCode != null">
+        versionCode = #{versionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hostCode != null">
+        hostCode = #{hostCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hostRestApi != null">
+        hostRestApi = #{hostRestApi,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maintainer != null">
+        maintainer = #{maintainer,jdbcType=VARCHAR},
+      </if>
+      <if test="hostName != null">
+        hostName = #{hostName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
 </mapper>

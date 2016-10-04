@@ -27,7 +27,7 @@ public class IndexController extends BaseController {
 	
 	@RequestMapping(value = "")
 	public String index(HttpServletResponse response){
-		return "index";
+		return "api/index";
 	}
 	
 	@ResponseBody

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.dhu.api.dao.ApiConfigDao;
 import com.dhu.api.model.ApiConfig;
 import com.dhu.framework.cache.annotation.CheckCache;
+import com.dhu.framework.cache.annotation.EvictCache;
 
 @Service
 public class ApiConfigService {
@@ -44,6 +45,11 @@ public class ApiConfigService {
 	@CheckCache(timeToLive = 60 * 60 * 4, cacheNull = false)
 	public ApiConfig getApiConfigById(Long id) {
 		return apiConfigDao.getApiConfigById(id);
+	}
+
+	@EvictCache(key="'ApiConfigService.listApiConfigByParams_'+#apiConfig.getVersionCode()")
+	public void addApiConfig(ApiConfig apiConfig) {
+		apiConfigDao.addApiConfig(apiConfig);
 	}
 
 }
