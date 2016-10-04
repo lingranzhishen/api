@@ -156,6 +156,6 @@
 <!-- <script src="${config.statichost}/static/dist/js/demo.js"></script> -->
 
 <!-- api sidebar -->
-<script src="${config.statichost}/static/js/sidebar/sidebar.js"></script>
+<script src="${config.statichost}/static/js/sidebar/sidebar.js?v={config.version}"></script>
 
 </body>
