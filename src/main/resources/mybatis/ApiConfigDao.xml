@@ -16,8 +16,12 @@
 		</if>
 		order by id limit 1
 	</select>
-	<select id="listApiConfigByParams" resultType="apiConfig">
+	<select id="getApiConfigById" resultType="apiConfig">
 		select * from t_api_config
+		where id=#{id}
+	</select>
+	<select id="listApiConfigByParams" resultType="apiConfig">
+		select id,hostCode,hostName,name from t_api_config
 		where 1=1
 		<if test="versionCode != null">
 			and versionCode=#{versionCode}

@@ -19,22 +19,31 @@ public class ApiConfigService {
 	/**
 	 * 查找api
 	 */
-	@CheckCache(timeToLive = 60 * 60 * 4,cacheNull=false)
-	public ApiConfig getApiConfigByParams(String versionCode,String hostCode,String apiPath) {
+	@CheckCache(timeToLive = 60 * 60 * 4, cacheNull = false)
+	public ApiConfig getApiConfigByParams(String versionCode, String hostCode, String apiPath) {
 		Map<String, Object> pMap = new HashMap<>();
 		pMap.put("versionCode", versionCode);
-		pMap.put("hostCode",hostCode);
-		pMap.put("apiPath",apiPath);
+		pMap.put("hostCode", hostCode);
+		pMap.put("apiPath", apiPath);
 		return apiConfigDao.getApiConfigByParams(pMap);
 	}
-	
+
 	/**
 	 * 查找api
 	 */
-	@CheckCache(timeToLive = 60 * 60 * 4,cacheNull=false)
+	@CheckCache(timeToLive = 60 * 60 * 4, cacheNull = false)
 	public List<ApiConfig> listApiConfigByParams(String versionCode) {
 		Map<String, Object> pMap = new HashMap<>();
 		pMap.put("versionCode", versionCode);
 		return apiConfigDao.listApiConfigByParams(pMap);
 	}
+
+	/**
+	 * 查找api
+	 */
+	@CheckCache(timeToLive = 60 * 60 * 4, cacheNull = false)
+	public ApiConfig getApiConfigById(Long id) {
+		return apiConfigDao.getApiConfigById(id);
+	}
+
 }

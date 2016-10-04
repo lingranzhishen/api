@@ -38,4 +38,12 @@ public class APIConfigController extends ApiBaseController {
 		
 		return result.put("data",apiConfig);
 	}
+	@ResponseBody
+	@RequestMapping(value = "/getdetail/{id}")
+	public Object apiRoute(HttpServletRequest request, HttpServletResponse response,
+			@PathVariable("id") Long id) {
+		ApiJsonResult result=ok();
+		ApiConfig apiConfig = apiConfigService.getApiConfigById(id);
+		return result.put("data",apiConfig);
+	}
 }
