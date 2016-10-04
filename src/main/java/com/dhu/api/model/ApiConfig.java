@@ -36,7 +36,7 @@ public class ApiConfig implements Serializable {
 	private String apiGatewayPath;
 	
 	public String getApiGatewayPath() {
-		return ConfigUtil.getConfigMap().get("api.host")+"/api"+getVersionCode()+getHostCode()+getApiPath();
+		return ConfigUtil.getConfigMap().get("apihost")+"/api/"+getVersionCode()+"/"+getHostCode()+"/"+getApiPath();
 	}
 
 	public void setApiGatewayPath(String apiGatewayPath) {
@@ -44,7 +44,7 @@ public class ApiConfig implements Serializable {
 	}
 
 	public String getEndPointPath() {
-		return ConfigUtil.getConfigMap().get(getHostCode()+".host")+getHostRestApi();
+		return ConfigUtil.getConfigMap().get(getHostCode()+"host")+"/"+getHostRestApi();
 	}
 
 	public void setEndPointPath(String endPointPath) {
