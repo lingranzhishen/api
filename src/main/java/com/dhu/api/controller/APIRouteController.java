@@ -52,7 +52,7 @@ public class APIRouteController extends ApiBaseController {
 		if(request.getParameterMap()!=null&&request.getParameterMap().size()>0){
 			Iterator entries=request.getParameterMap().entrySet().iterator();
 			while(entries.hasNext()){
-				Map.Entry entry=(Entry) entries.next();
+				Map.Entry<String,String> entry=(Entry<String,String>) entries.next();
 				paramBuffer.append('&');
 				paramBuffer.append(entry.getKey()+"="+entry.getValue());
 			}
