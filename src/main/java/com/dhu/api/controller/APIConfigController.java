@@ -38,7 +38,7 @@ public class APIConfigController extends ApiBaseController {
 		return result.put("data",apiConfig);
 	}
 	@ResponseBody
-	@RequestMapping(value = "/getdetail/{id}")
+	@RequestMapping(value = "/getDetail/{id}")
 	public Object apiRoute(HttpServletRequest request, HttpServletResponse response,
 			@PathVariable("id") Long id) {
 		ApiJsonResult result=ok();
