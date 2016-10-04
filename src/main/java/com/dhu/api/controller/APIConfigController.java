@@ -30,12 +30,11 @@ public class APIConfigController extends ApiBaseController {
 	SysCodeService sysCodeService;
 
 	@ResponseBody
-	@RequestMapping(value = "/{version}/{hostCode}")
+	@RequestMapping(value = "/getList/{version}")
 	public Object apiRoute(HttpServletRequest request, HttpServletResponse response,
-			@PathVariable("version") String version, @PathVariable("hostCode") String hostCode) {
+			@PathVariable("version") String version, String hostCode) {
 		ApiJsonResult result=ok();
 		List<ApiConfig> apiConfig = apiConfigService.listApiConfigByParams(version);
-		
 		return result.put("data",apiConfig);
 	}
 	@ResponseBody
