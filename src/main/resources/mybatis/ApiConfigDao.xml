@@ -135,6 +135,9 @@
       <if test="hostRestApi != null">
         hostRestApi = #{hostRestApi,jdbcType=VARCHAR},
       </if>
+      <if test="apiPath != null">
+        apiPath = #{apiPath,jdbcType=VARCHAR},
+      </if>
       <if test="createTime != null">
         createTime = #{createTime,jdbcType=TIMESTAMP},
       </if>

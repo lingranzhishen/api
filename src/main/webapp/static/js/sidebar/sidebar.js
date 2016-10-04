@@ -219,12 +219,30 @@ var SidebarBox = require('../components/sidebarbox');
 
 var handler = {};
 
+// requestMethod 调用方法
+// apiGatewayPath 网关调用地址
+// endPointPath  后台实际地址
+// maintainer 维护人
+// hostName 所属项目
+
 var apiClick = function (e) {
 	var dom = e.currentTarget;
 	var apiId = $(dom).attr("data-id");
 	var url = '/admin/api/getDetail/' + apiId;
 	$.post(url, {}, function (data) {
-		var description = data.data.description;
+		data = data.data;
+		//api name
+		$("#apiName").text(data.name);
+		//requestMethod
+		$("#requestMethod").text(data.requestMethod);
+		//endPointPath
+		$("#endPointPath").text(data.endPointPath);
+		//maintainer
+		$("#maintainer").text(data.maintainer);
+		//hostName
+		$("#hostName").text(data.hostName);
+
+		var description = data.description;
 		var html = md.render(description);
 		$("#apiDescription").html(html);
 	});

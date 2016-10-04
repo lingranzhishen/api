@@ -45,7 +45,7 @@ public class APIRouteController extends ApiBaseController {
 		if (apiConfig == null) {
 			return fail(ApiJsonResult.ERRNO_NOT_FIND, "未找到接口");
 		}
-		Map<String, Object> hostMap = sysCodeService.getApiConfigByParams(SysCodeType.HOST.name().toLowerCase());
+		Map<String, Object> hostMap = sysCodeService.getHostMap(SysCodeType.HOST.name().toLowerCase());
 		String remoteHost = hostMap.get(apiConfig.getHostCode()).toString();
 		String remoteApiUrl = remoteHost + "/" + apiConfig.getHostRestApi();
 		StringBuffer paramBuffer=new StringBuffer("");

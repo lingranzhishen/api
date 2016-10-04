@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
+import com.dhu.api.enums.SysCodeType;
 import com.dhu.api.model.ApiConfig;
 import com.dhu.api.service.ApiConfigService;
 import com.dhu.api.service.SysCodeService;
@@ -52,7 +53,42 @@ public class APIConfigController extends ApiBaseController {
 	public ApiJsonResult save(HttpServletRequest request, HttpServletResponse response,
 			@RequestBody ApiConfig apiConfig) {
 		ApiJsonResult result=ok();
+		try{
 		apiConfigService.addApiConfig(apiConfig);
+		}catch(Exception e){
+			log.info("插入失败");
+			e.printStackTrace();
+			return fail(ApiJsonResult.ERRNO_EXCEPTION,"插入失败");
+		}
 		return result.put("data",apiConfig);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/update")
+	public ApiJsonResult update(HttpServletRequest request, HttpServletResponse response,
+			@RequestBody ApiConfig apiConfig) {
+		ApiJsonResult result=ok();
+		try {
+			apiConfigService.updateApiConfig(apiConfig);
+		} catch (Exception e) {
+			log.info("更新失败");
+			e.printStackTrace();
+			return fail(ApiJsonResult.ERRNO_EXCEPTION, "插入失败");
+		}
+		return result.put("data",apiConfig);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/getSysCode")
+	public ApiJsonResult getHost(HttpServletRequest request) {
+		ApiJsonResult result=ok();
+		try {
+			result.put("data",sysCodeService.listSysCodeByType(SysCodeType.HOST.name().toLowerCase()));
+		} catch (Exception e) {
+			log.info("查询失败");
+			e.printStackTrace();
+			return fail(ApiJsonResult.ERRNO_EXCEPTION, "查询失败");
+		}
+		return result;
 	}
 }

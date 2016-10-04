@@ -51,5 +51,11 @@ public class ApiConfigService {
 	public void addApiConfig(ApiConfig apiConfig) {
 		apiConfigDao.addApiConfig(apiConfig);
 	}
+	@EvictCache(key="'ApiConfigService.getApiConfigById_'+#apiConfig.getId()")
+	public void updateApiConfig(ApiConfig apiConfig) {
+		apiConfigDao.updateApiConfig(apiConfig);
+	}
+	
+	
 
 }

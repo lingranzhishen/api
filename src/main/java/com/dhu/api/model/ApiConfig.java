@@ -3,6 +3,8 @@ package com.dhu.api.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.dhu.common.util.ConfigUtil;
+
 public class ApiConfig implements Serializable {
 	private static final long serialVersionUID = -6056974453843870721L;
 	private Long id;
@@ -30,6 +32,26 @@ public class ApiConfig implements Serializable {
 	private String description;
 	
 	private String requestMethod;
+	
+	private String apiGatewayPath;
+	
+	public String getApiGatewayPath() {
+		return ConfigUtil.getConfigMap().get("api.host")+"/api"+getVersionCode()+getHostCode()+getApiPath();
+	}
+
+	public void setApiGatewayPath(String apiGatewayPath) {
+		this.apiGatewayPath = apiGatewayPath;
+	}
+
+	public String getEndPointPath() {
+		return ConfigUtil.getConfigMap().get(getHostCode()+".host")+getHostRestApi();
+	}
+
+	public void setEndPointPath(String endPointPath) {
+		this.endPointPath = endPointPath;
+	}
+
+	private String endPointPath;
 
 	public String getRequestMethod() {
 		return requestMethod;

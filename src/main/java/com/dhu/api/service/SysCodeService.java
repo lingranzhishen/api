@@ -20,7 +20,7 @@ public class SysCodeService {
 	 * 查找hostCode映射关系
 	 */
 	@CheckCache(timeToLive = 60 * 60 * 4,cacheNull=false)
-	public Map<String,Object> getApiConfigByParams(String type) {
+	public Map<String,Object> getHostMap(String type) {
 		Map<String, Object> pMap = new HashMap<>();
 		pMap.put("type",type);
 		List<SysCode>sysCodes= sysCodeDao.getAllSysCodeByType(pMap);
@@ -29,5 +29,15 @@ public class SysCodeService {
 			pMap.put(code.getCode(), code.getValue());
 		}
 		return pMap;
+	}
+	
+	/**
+	 * 查找hostCode映射关系
+	 */
+	@CheckCache(timeToLive = 60 * 60 * 4,cacheNull=false)
+	public List<SysCode> listSysCodeByType(String type) {
+		Map<String, Object> pMap = new HashMap<>();
+		pMap.put("type",type);
+		return sysCodeDao.getAllSysCodeByType(pMap);
 	}
 }
