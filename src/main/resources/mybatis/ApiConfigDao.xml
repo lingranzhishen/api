@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 务必配置正确namespace 就是所映射的接口类 -->
+<mapper namespace="com.dhu.api.dao.ApiConfigDao">
+	<select id="getApiConfigByParams" resultType="apiConfig">
+		select * from t_api_config
+		where 1=1
+		<if test="versionCode != null">
+			and versionCode=#{versionCode}
+		</if>
+		<if test="hostCode != null">
+			and hostCode=#{hostCode}
+		</if>
+		<if test="apiPath != null">
+			and apiPath=#{apiPath}
+		</if>
+		order by id limit 1
+	</select>
+	<select id="listApiConfigByParams" resultType="apiConfig">
+		select * from t_api_config
+		where 1=1
+		<if test="versionCode != null">
+			and versionCode=#{versionCode}
+		</if>
+		<if test="hostCode != null">
+			and hostCode=#{hostCode}
+		</if>
+		order by id
+	</select>
+	
+	<select id="getHostMap" resultType="sysCode">
+		select top 1 * from t_api_config
+		where 1=1
+		<if test="versionCode != null">
+			and versionCode=#{versionCode}
+		</if>
+		<if test="hostCode != null">
+			and hostCode=#{versionCode}
+		</if>
+		<if test="apiPath != null">
+			and apiPath=#{apiPath}
+		</if>
+	</select>
+
+	<insert id="insertApiConfig">
+		insert into t_api_config
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="name != null">
+				name,
+			</if>
+			<if test="versionCode != null">
+				versionCode,
+			</if>
+			<if test="hostCode != null">
+				hostCode,
+			</if>
+			<if test="apiPath != null">
+				apiPath,
+			</if>
+			<if test="hostRestApi != null">
+				hostRestApi,
+			</if>
+			<if test="createTime != null">
+				createTime,
+			</if>
+			<if test="creator != null">
+				creator,
+			</if>
+			<if test="updateTime != null">
+				updateTime,
+			</if>
+			<if test="maintainer != null">
+				maintainer,
+			</if>
+			<if test="hostName != null">
+				hostName,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="versionCode != null">
+				#{versionCode,jdbcType=VARCHAR},
+			</if>
+			<if test="hostCode != null">
+				#{hostCode,jdbcType=VARCHAR},
+			</if>
+			<if test="apiPath != null">
+				#{apiPath,jdbcType=VARCHAR},
+			</if>
+			<if test="hostRestApi != null">
+				#{hostRestApi,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creator != null">
+				#{creator,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="maintainer != null">
+				#{maintainer,jdbcType=VARCHAR},
+			</if>
+			<if test="hostName != null">
+				#{hostName,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+</mapper>
