@@ -237,8 +237,8 @@ handler.init = function () {
 		// var data = JSON.parse('{"errno":0,"data":[{"apiPath":"getAuthTree","description":"hello api","hostCode":"uc","hostName":"用户中心","hostRestApi":"api/auth/getAuthTree.json","id":1,"name":"获取权限树","requestMethod":"POST","versionCode":"v1"}],"status":"ok"}')
 		var data = data.data;
 		var tree = {};
-		for (var i = 0; i < data.data.length; ++i) {
-			var api = data.data[i];
+		for (var i = 0; i < data.length; ++i) {
+			var api = data[i];
 			if (tree[api.hostCode]) tree[api.hostCode].apis.push(api);else tree[api.hostCode] = {
 				hostCode: api.hostCode,
 				hostName: api.hostName,
