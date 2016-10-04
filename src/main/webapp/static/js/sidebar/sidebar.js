@@ -235,6 +235,8 @@ var apiClick = function (e) {
 		$("#apiName").text(data.name);
 		//requestMethod
 		$("#requestMethod").text(data.requestMethod);
+		//apiGatewayPath
+		$("#apiGatewayPath").text(data.apiGatewayPath);
 		//endPointPath
 		$("#endPointPath").text(data.endPointPath);
 		//maintainer
