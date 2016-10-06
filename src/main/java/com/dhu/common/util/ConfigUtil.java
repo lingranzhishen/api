@@ -3,6 +3,8 @@ package com.dhu.common.util;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.dhu.api.enums.SysCodeType;
+import com.dhu.api.service.SysCodeService;
 import com.dhu.common.CityThreadLocal;
 import com.dhu.common.Constants;
 import com.dhu.common.ResourceConfig;
@@ -24,6 +26,11 @@ public class ConfigUtil {
 		return configMap.get(CityThreadLocal.get());
 	}
 	
+	public static String getHostNameByCode(String code) {
+       SysCodeService sysCodeService=(SysCodeService) SpringContextUtil.getBean("sysCodeService");
+       return sysCodeService.getSysCodeNameMap().get(code+"_"+SysCodeType.HOST.name().toLowerCase());
+	}
+	
 	/**
      * 初始化configMap
      */
@@ -37,19 +44,11 @@ public class ConfigUtil {
 	        	configMap2.put("version", Constants.JSVERSION);
 	        	configMap2.put("cityCode", cityCode);
 	        	configMap2.put("cityName", CityNameEnum.cityNameMap.get(cityCode));
-	        	
-	        	configMap2.put("managehost",ResourceConfig.getString("manage.host"));	        		        	
 	        	configMap2.put("apihost",ResourceConfig.getString("api.host"));
-	        	configMap2.put("openhost",ResourceConfig.getString("open.host"));
-	        	configMap2.put("chathost",ResourceConfig.getString("chat.host"));
 	        	configMap2.put("publichost",ResourceConfig.getString("public.host"));
 	        	configMap2.put("statichost",ResourceConfig.getString("static.host"));
-	        	configMap2.put("loginhost",ResourceConfig.getString("login.host"));
-	        	
-	        	configMap2.put("webhost",CommonFunctions.getConfigByCity("web.host", cityCode));
+	        	configMap2.put("cmshost",ResourceConfig.getString("cms.host"));
 	        	configMap2.put("uchost",CommonFunctions.getConfigByCity("uc.host", cityCode));
-	        	configMap2.put("agenthost",CommonFunctions.getConfigByCity("agent.host", cityCode));
-	        	configMap2.put("xinfanghost",CommonFunctions.getConfigByCity("xinfang.host", cityCode));
 	        	configMap.put(cityCode, configMap2);
 			}       	
     	}

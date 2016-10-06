@@ -40,4 +40,17 @@ public class SysCodeService {
 		pMap.put("type",type);
 		return sysCodeDao.getAllSysCodeByType(pMap);
 	}
+	
+	/**
+	 * 查找hostCode映射关系
+	 */
+	@CheckCache(timeToLive = 60 * 60 * 4,cacheNull=false)
+	public Map<String,String> getSysCodeNameMap() {
+		Map<String, String> pMap = new HashMap<>();
+		List<SysCode> codes=sysCodeDao.getAllSysCodeByType(null);
+		for(SysCode c:codes){
+			pMap.put(c.getCode()+"_"+c.getType(), c.getCodeName());
+		}
+		return pMap;
+	}
 }
